@@ -1,7 +1,11 @@
 import theme from 'theme';
 
 const styles = {
-  main: {
+  timeline: {
+    marginBottom: theme.freeSpace,
+    padding: theme.freeSpace * 4,
+  },
+  controls: {
     display: 'flex',
   },
   minMax: {

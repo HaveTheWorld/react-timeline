@@ -3,8 +3,8 @@ import { Map, List } from 'immutable';
 import { SET_MIN_VALUE, SET_MAX_VALUE, SET_MIN_MAX_VALUES, ADD_ITEM, REMOVE_ITEM, EDIT_ITEM } from './constants';
 
 const initialState = new Map({
-  minValue: 0,
-  maxValue: 0,
+  minValue: '0',
+  maxValue: '100',
   items: new List(),
 });
 
@@ -16,11 +16,11 @@ const getNewItem = () => {
 function timelineReducer(state = initialState, action) {
   switch (action.type) {
     case SET_MIN_VALUE:
-      return state.set('minValue', +action.minValue);
+      return state.set('minValue', action.minValue);
     case SET_MAX_VALUE:
-      return state.set('maxValue', +action.maxValue);
+      return state.set('maxValue', action.maxValue);
     case SET_MIN_MAX_VALUES:
-      return state.set('minValue', +action.minValue).set('maxValue', +action.maxValue);
+      return state.set('minValue', action.minValue).set('maxValue', +action.maxValue);
     case ADD_ITEM:
       return state.update('items', items => items.push(getNewItem()));
     case REMOVE_ITEM:

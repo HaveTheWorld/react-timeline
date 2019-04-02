@@ -4,12 +4,27 @@ import { removeItem, editItem } from 'components/Timeline/actions';
 
 class AddPointsForm extends React.Component {
   state = {
-    min: 0,
-    max: 0,
+    min: '0',
+    max: '',
   };
 
+  componentWillReceiveProps({ item }) {
+    const min = item.getIn(['value', 'min']);
+    const max = item.getIn(['value', 'max']);
+    const state = {};
+    if (parseFloat(min) && min !== this.state.min) {
+      state.min = min;
+    }
+    if (parseFloat(max) && max !== this.state.max) {
+      state.max = max;
+    }
+    if (Object.keys(state).length) {
+      this.setState(state);
+    }
+  }
+
   onChange = name => e => {
-    this.setState({ [name]: +e.target.value });
+    this.setState({ [name]: e.target.value });
   };
 
   onSubmit = e => {
@@ -22,7 +37,7 @@ class AddPointsForm extends React.Component {
   render() {
     const { min, max } = this.state;
     const { item, removeItem, minValue, maxValue } = this.props;
-    const btnDisabled = (max && min >= max) || min < minValue || min > maxValue || max > maxValue;
+    const btnDisabled = (max && +min >= +max) || +min < +minValue || +min > +maxValue || +max > +maxValue;
     return (
       <Fragment>
         <form onSubmit={this.onSubmit}>

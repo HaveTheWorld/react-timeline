@@ -19,13 +19,13 @@ class MinMaxForm extends React.Component {
   }
 
   onChange = name => e => {
-    this.setState({ [name]: +e.target.value, error: '' });
+    this.setState({ [name]: e.target.value, error: '' });
   };
 
   onSubmit = e => {
     e.preventDefault();
     const { minValue, maxValue } = this.state;
-    if (minValue >= maxValue) {
+    if (+minValue >= +maxValue) {
       this.setState({ error: 'MinValue must be less than MaxValue' });
       return;
     }
