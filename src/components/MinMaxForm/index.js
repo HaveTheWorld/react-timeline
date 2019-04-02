@@ -19,7 +19,10 @@ class MinMaxForm extends React.Component {
   }
 
   onChange = name => e => {
-    this.setState({ [name]: e.target.value, error: '' });
+    this.setState({
+      [name]: e.target.value.replace(/^-?0\d+/, p => p.replace('0', '')),
+      error: '',
+    });
   };
 
   onSubmit = e => {

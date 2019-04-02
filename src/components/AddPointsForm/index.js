@@ -24,7 +24,7 @@ class AddPointsForm extends React.Component {
   }
 
   onChange = name => e => {
-    this.setState({ [name]: e.target.value });
+    this.setState({ [name]: e.target.value.replace(/^-?0\d+/, p => p.replace('0', '')) });
   };
 
   onSubmit = e => {
@@ -53,9 +53,9 @@ class AddPointsForm extends React.Component {
               <input type="text" value={max} disabled={!min} onChange={this.onChange('max')} />
             </label>
           </div>
-          <button disabled={btnDisabled}>Add Point</button>
+          <button disabled={btnDisabled}>Apply</button>
           <button type="button" onClick={() => removeItem(item.get('id'))}>
-            Remove Point
+            Remove
           </button>
         </form>
         <br />
