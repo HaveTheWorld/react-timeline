@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setMinMaxValues } from 'components/Timeline/actions';
 import { createSelector } from 'reselect';
-import { selectMinValue, selectMaxValue } from 'components/Timeline/selectors';
+import { selectMinValue, selectMaxValue, selectItems } from 'components/Timeline/selectors';
 
 class MinMaxForm extends React.Component {
   constructor(props) {
@@ -35,23 +35,24 @@ class MinMaxForm extends React.Component {
 
   render() {
     const { minValue, maxValue, error } = this.state;
+    const { items } = this.props;
     return (
       <form onSubmit={this.onSubmit}>
         <div>
           <label>
             <span>Min value:</span>
             <br />
-            <input type="text" value={minValue || ''} onChange={this.onChange('minValue')} />
+            <input type="text" disabled={items.size} value={minValue} onChange={this.onChange('minValue')} />
           </label>
         </div>
         <div>
           <label>
             <span>Max value:</span>
             <br />
-            <input type="text" value={maxValue || ''} onChange={this.onChange('maxValue')} />
+            <input type="text" disabled={items.size} value={maxValue} onChange={this.onChange('maxValue')} />
           </label>
         </div>
-        <button>Submit</button>
+        <button disabled={items.size}>Submit</button>
         <div>{error}</div>
       </form>
     );
@@ -61,9 +62,11 @@ class MinMaxForm extends React.Component {
 const mapStateToProps = createSelector(
   selectMinValue,
   selectMaxValue,
-  (minValue, maxValue) => ({
+  selectItems,
+  (minValue, maxValue, items) => ({
     minValue,
     maxValue,
+    items,
   })
 );
 

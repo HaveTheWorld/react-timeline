@@ -11,3 +11,8 @@ export const selectMaxValue = createSelector(
   selectTimeline,
   state => state.get('maxValue')
 );
+
+export const selectItems = createSelector(
+  selectTimeline,
+  state => state.get('items')
+);
