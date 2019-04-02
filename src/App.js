@@ -1,10 +1,7 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
+import Main from 'components/Main';
 
-const App = () => (
-  <div>
-    <h1>App</h1>
-  </div>
-);
+const App = () => <Main />;
 
 export default hot(App);

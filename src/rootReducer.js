@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
+import timeline from 'components/Timeline/reducer';
+
 const rootReducer = combineReducers({
-  test: () => 123,
+  timeline,
 });
 
 export default rootReducer;
