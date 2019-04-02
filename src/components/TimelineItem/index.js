@@ -5,11 +5,11 @@ import styles from './styles';
 
 class TimelineItem extends React.Component {
   render() {
-    const { classes, minValue, maxValue, value, isPoint } = this.props;
+    const { classes, minValue, maxValue, value, isPoint, onChange } = this.props;
 
     return (
       <div className={classes.item}>
-        <InputRange minValue={+minValue} maxValue={+maxValue} value={value} onChange={() => {}} />
+        <InputRange minValue={+minValue} maxValue={+maxValue} value={value} onChange={onChange} />
       </div>
     );
   }
